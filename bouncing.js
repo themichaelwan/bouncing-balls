@@ -1,16 +1,19 @@
 (function () {
 
   // Setup canvas
-  const Base = function () {
+  const Base = function (ballCount) {
     let canvas = document.getElementById("bouncing");
     this.ctx = canvas.getContext("2d");
     this.canvasSize = { x: canvas.width, y: canvas.height };
 
     this.allObj = [];
 
-    for (let i = 0; i < getRandomInt(5, 15); i++) {
-      let circle = new Circle(this.canvasSize, this.ctx, getRandomInt(0, this.canvasSize.x),
-        getRandomInt(0, this.canvasSize.y), getRandomInt(5, 50), getRandomColor(), getRandomInt(-5, 5), getRandomInt(-5, 5))
+    for (let i = 0; i < ballCount; i++) {
+      // let circle = new Circle(this.canvasSize, this.ctx, getRandomInt(0, this.canvasSize.x),
+      //   getRandomInt(0, this.canvasSize.y), getRandomInt(5, 50), getRandomColor(), getRandomInt(-5, 5), getRandomInt(-5, 5))
+
+      let circle = new Circle(this.canvasSize, this.ctx, this.canvasSize.x / 2,
+        this.canvasSize.y / 2, getRandomInt(5, 50), getRandomColor(), getRandomInt(-5, 5), getRandomInt(-5, 5))
       this.allObj.push(circle);
     }
 
@@ -87,7 +90,21 @@
     return color;
   }
 
+  function init() {
+    let ballSlider = document.getElementById("ballSlider");
+    let ballCount = document.getElementById("ballCount");
+
+    ballCount.innerHTML = ballSlider.value;
+    new Base(ballSlider.value);
+
+    ballSlider.oninput = function () {
+      ballCount.innerHTML = ballSlider.value;
+      new Base(ballSlider.value);
+    }
+  }
+
   window.addEventListener("load", function () {
-    new Base();
+    init();
   });
+
 })();

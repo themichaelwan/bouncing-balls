@@ -1,0 +1,13 @@
+div{
+  font-family: Tahoma, Verdana, Segoe, sans-serif;
+  padding: 10px;
+}
+.slider-container{
+  display:flex;
+}
+.ball-count-control{
+  width: 150px;
+}
+.speed-control{
+  flex-grow: 1;
+}

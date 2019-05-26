@@ -1,7 +1,7 @@
 (function () {
 
   // Setup canvas
-  const Base = function (circleCount) {
+  const Base = function (circleCount, speed) {
 
     let canvas = document.getElementById("bouncing");
     this.ctx = canvas.getContext("2d");
@@ -17,7 +17,7 @@
       let y = getRandomInt(0 + radius, this.canvasSize.y - radius);
       let mass = 1;
 
-      let circle = new Circle(this.ctx, x, y, radius, getRandomColor(), getRandomInt(-5, 5), getRandomInt(-5, 5), mass);
+      let circle = new Circle(this.ctx, x, y, radius, getRandomColor(), getRandomInt(-speed, speed), getRandomInt(-speed, speed), mass);
 
       this.allCircle.push(circle);
       this.allCircle.forEach(otherCircle => {
@@ -160,15 +160,24 @@
   }
 
   function init() {
-    let ballSlider = document.getElementById("ballSlider");
-    let ballCount = document.getElementById("ballCount");
+    let ballSlider = document.getElementById("ball-slider");
+    let ballDisplay = document.getElementById("ball-display");
 
-    ballCount.innerHTML = ballSlider.value;
-    new Base(ballSlider.value);
+    let speedSlider = document.getElementById("speed-slider");
+    let speedDisplay = document.getElementById("speed-display");
+
+    ballDisplay.innerHTML = ballSlider.value;
+    speedDisplay.innerHTML = speedSlider.value;
+    new Base(ballSlider.value, speedSlider.value);
 
     ballSlider.oninput = function () {
-      ballCount.innerHTML = ballSlider.value;
-      new Base(ballSlider.value);
+      ballDisplay.innerHTML = ballSlider.value;
+      new Base(ballSlider.value, speedSlider.value);
+    }
+
+    speedSlider.oninput = function () {
+      speedDisplay.innerHTML = speedSlider.value;
+      new Base(ballSlider.value, speedSlider.value);
     }
   }
 

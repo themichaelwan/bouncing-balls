@@ -47,11 +47,17 @@
       this.allCircle.forEach(circle => {
         circle.draw();
 
-        if (circle.x - circle.radius < 0 || circle.x + circle.radius > this.canvasSize.x) {
-          circle.dx = - 1 * circle.dx;
+        if (circle.x - circle.radius < 0 && circle.dx < 0) {
+          circle.dx = - circle.dx;
         }
-        if (circle.y - circle.radius < 0 || circle.y + circle.radius > this.canvasSize.y) {
-          circle.dy = - 1 * circle.dy;
+        if (circle.x + circle.radius > this.canvasSize.x && circle.dx > 0) {
+          circle.dx = - circle.dx;
+        }
+        if (circle.y - circle.radius < 0 && circle.dy < 0) {
+          circle.dy = - circle.dy;
+        }
+        if (circle.y + circle.radius > this.canvasSize.y && circle.dy > 0) {
+          circle.dy = - circle.dy;
         }
 
         this.allCircle.forEach(otherCircle => {

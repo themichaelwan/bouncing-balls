@@ -15,5 +15,5 @@ https://themichaelwan.github.io/bouncing-balls/
 - requestAnimationFrame()
 - Immediately-invoked function expressions
 - Math.random()
-- Slider, <input type="range">
+- Slider, `<input type="range">`
 - Elastic collision idea from https://en.wikipedia.org/wiki/Elastic_collision
